@@ -22,7 +22,7 @@ function [TrainingTime, TestingTime, TrainingAccuracy, TestingAccuracy,TY] = esv
 % TestingAccuracy             - Testing accuracy: 
 %                               RMSE for regression or correct classification rate for classification
 %
-% MULTI-CLASSE CLASSIFICATION: NUMBER OF OUTPUT NEURONS WILL BE AUTOMATICALLY SET EQUAL TO NUMBER OF CLASSES
+
 % FOR EXAMPLE, if there are 7 classes in all, there will have 7 output
 % neurons; neuron 5 has the highest output means input belongs to 5-th class
 %

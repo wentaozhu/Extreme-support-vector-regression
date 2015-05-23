@@ -86,15 +86,16 @@ end
 clear tempH;                                        %   Release the temparary array for calculation of hidden neuron output matrix H
 H=[H;-ones(1,NumberofTrainingData)];
 %%%%%%%%%%% Calculate output weights OutputWeight (beta_i)
-%OutputWeight=pinv(H') * T';                        % implementation without regularization factor //refer to 2006 Neurocomputing paper
-%OutputWeight=inv(eye(size(H,1))/C+H * H') * H * T';   % faster method 1 //refer to 2012 IEEE TSMC-B paper
-%implementation; one can set regularizaiton factor C properly in classification applications 
-OutputWeight=(eye(size(H,1))/C+H * H') \ H * T';      % faster method 2 //refer to 2012 IEEE TSMC-B paper
-%implementation; one can set regularizaiton factor C properly in classification applications
+
+OutputWeight=(eye(size(H,1))/C+H * H') \ H * T';      
+
+%%% if size(H,2) < size(H,1)
+%%%     OutputWeight = H / (eye(size(H,2)) / C + H' * H) * T';
+%%% end
 
 %If you use faster methods or kernel method, PLEASE CITE in your paper properly: 
 
-%Guang-Bin Huang, Hongming Zhou, Xiaojian Ding, and Rui Zhang, "Extreme Learning Machine for Regression and Multi-Class Classification," submitted to IEEE Transactions on Pattern Analysis and Machine Intelligence, October 2010. 
+
 
 end_time_train=cputime;
 TrainingTime=end_time_train-start_time_train ;       %   Calculate CPU time (seconds) spent for training ELM
